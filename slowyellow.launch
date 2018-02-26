@@ -1,0 +1,22 @@
+<launch>
+        <node
+        pkg="turtlesim"
+        type="turtlesim_node"
+        name="turtlesim"
+        respawn="true"
+        />
+
+        <node
+        pkg="turtlesim_application"
+        type="turtlesimap_controlpub_exe"
+        name="turtle_controlpub_node">
+        <param name="max_vel" value="3"/>
+        </node>
+
+        <node
+        pkg="turtlesim_application"
+        type="turtlesimap_setcolor_exe"
+        name="turtlesim_setcolor_node"
+        />
+
+</launch>

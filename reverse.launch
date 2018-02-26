@@ -1,0 +1,59 @@
+<launch>
+        <!--node
+        pkg="turtlesim"
+        type="turtlesim_node"
+        name="turtlesim"
+        respawn="true"
+        ns="turtle2"
+        /-->
+        <!--remap from="/turtle1/turtle1/cmd_vel" to="turtle1/hello"/--> <!--change all and do not have ns-->
+
+        <node
+        pkg="turtlesim"
+        type="turtlesim_node"
+        name="turtlesim"
+        respawn="true"
+        ns="turtle1">
+        <remap from="/turtle1/turtle1/cmd_vel" to="turtle1/cmd_vel_reverse"/> <!--change only in this node and have ns-->
+        </node>
+
+        <node
+        pkg="turtlesim"
+        type="turtle_teleop_key"
+        name="teleop_key"
+        required="true"
+        launch-prefix="xterm -e"
+        ns="turtle1">
+        <!--remap from="/turtle1/turtle1/cmd_vel" to="turtle1/cmd_vel_reverse"/--> <!--change only in this node and have ns-->
+        </node>
+
+        <node
+        pkg="turtlesim_application"
+        type="turtlesimap_subscriber_exe"
+        name="turtlesim_subscriber_node"
+        output="screen"
+        ns="turtle1"
+        />
+
+        <node
+        pkg="turtlesim_application"
+        type="turtlesimap_reverse_exe"
+        name="turtlesim_reverse_node"
+        ns="turtle1"
+        />
+
+        <!--node
+        pkg="turtlesim_application"
+        type="turtlesimap_publisher_exe"
+        name="turtlesim_publisher_node"
+        ns="turtle1"
+        /-->
+
+        <!--node
+        pkg="turtlesim_application"
+        type="turtlesimap_publisher_exe"
+        name="turtlesim_publisher_node"
+        ns="turtle2"
+        /-->
+
+</launch>

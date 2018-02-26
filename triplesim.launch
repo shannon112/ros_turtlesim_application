@@ -1,0 +1,22 @@
+<launch>
+        <include
+                file="$(find turtlesim_application)/doublesim.launch"
+        />
+        <arg
+                name="use_sim3"
+                default="0"
+        />
+        <group ns="sim3" if ="$(arg use_sim3)"><!--if="0"-->
+                <node
+                pkg="turtlesim"
+                type="turtlesim_node"
+                name="turtlesim"
+                respawn="true"
+                />
+                <node
+                pkg="turtlesim_application"
+                type="turtlesimap_publisher_exe"
+                name="turtlesim_publisher_node"
+                />
+        </group>
+</launch>
